@@ -75,11 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
               key: _id_familyname,
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Please enter password';
+                  return 'Please enter familyname';
                 }
               },
               decoration: new InputDecoration(
-                hintText: "Nom",
+                hintText: "Family name",
               ),
             ),
           ),
@@ -89,11 +89,11 @@ class _MyHomePageState extends State<MyHomePage> {
               key: _id_firstname,
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Please enter password';
+                  return 'Please enter firstname';
                 }
               },
               decoration: new InputDecoration(
-                hintText: "Prénom",
+                hintText: "First name",
               ),
             ),
           ),
@@ -102,11 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
             title: new TextFormField(
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Please enter password';
+                  return 'Please enter email';
                 }
               },
               decoration: new InputDecoration(
-                hintText: "Émail",
+                hintText: "Email",
               ),
             ),
           ),
@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               },
               decoration: new InputDecoration(
-                hintText: "Mot de passe",
+                hintText: "Password",
               ),
             ),
           ),
