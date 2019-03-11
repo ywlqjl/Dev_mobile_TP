@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//import 'package:tp_flutter_app_1/settings.dart';
+//import 'package:tp_flutter_app_1/login.dart';
 
 void main() {
   runApp(new MyApp());
@@ -46,9 +48,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
-  final _id_firstname = GlobalKey<FormState>();
-  final _id_familyname = GlobalKey<FormState>();
+  final _id_firstName = GlobalKey<FormState>();
+  final _id_familyName = GlobalKey<FormState>();
   final _id_pwd = GlobalKey<FormState>();
+
+
+
+  void _onSubmit(){
+    print('login with');
+
+  }
+  void _goHome(){
+    print('go home');
+  }
+
+  void _logout(){
+    print('log out');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,90 +74,93 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return new Scaffold(
-      appBar: new AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: new Text(widget.title),
-        actions: <Widget>[
-          new IconButton(icon: const Icon(Icons.save), onPressed: () {})
-        ],
-      ),
-      body: new Column(
-        children: <Widget>[
-          new ListTile(
-            leading: const Icon(Icons.person),
-            title: new TextFormField(
-              key: _id_familyname,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter familyname';
-                }
-              },
-              decoration: new InputDecoration(
-                hintText: "Family name",
-              ),
-            ),
-          ),
-          new ListTile(
-            leading: const Icon(Icons.person),
-            title: new TextFormField(
-              key: _id_firstname,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter firstname';
-                }
-              },
-              decoration: new InputDecoration(
-                hintText: "First name",
-              ),
-            ),
-          ),
-          new ListTile(
-            leading: const Icon(Icons.email),
-            title: new TextFormField(
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter email';
-                }
-              },
-              decoration: new InputDecoration(
-                hintText: "Email",
-              ),
-            ),
-          ),
+    return new Form(
+      key: _formKey,
+      child: new Scaffold(
+        appBar: new AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: new Text(widget.title),
+          actions: <Widget>[
+            new IconButton(icon: const Icon(Icons.home), onPressed: () {_goHome();}),
+            new IconButton(icon: const Icon(Icons.exit_to_app), onPressed: () {_logout();})
 
-          new ListTile(
-            leading: const Icon(Icons.beenhere),
-            title: new TextFormField(
-              key: _id_pwd,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter password';
-                }
-              },
-              decoration: new InputDecoration(
-                hintText: "Password",
+          ],
+        ),
+        body: new Column(
+          children: <Widget>[
+            new ListTile(
+              leading: const Icon(Icons.person),
+              title: new TextFormField(
+                key: _id_familyName,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter familyname';
+                  }
+                },
+                decoration: new InputDecoration(
+                  hintText: "Family name",
+                ),
               ),
             ),
-          ),
-
-          new ListTile(
-            title: RaisedButton(
-              onPressed: () {
-                // Validate will return true if the form is valid, or false if
-                // the form is invalid.
-                if (_formKey.currentState.validate()) {
-                  // If the form is valid, we want to show a Snackbar
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
-              child: Text('Enregistrer'),
+            new ListTile(
+              leading: const Icon(Icons.person),
+              title: new TextFormField(
+                key: _id_firstName,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter firstname';
+                  }
+                },
+                decoration: new InputDecoration(
+                  hintText: "First name",
+                ),
+              ),
             ),
-          ),
-
-        ],
+            new ListTile(
+              leading: const Icon(Icons.email),
+              title: new TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter email';
+                  }
+                },
+                decoration: new InputDecoration(
+                  hintText: "Email",
+                ),
+              ),
+            ),
+            new ListTile(
+              leading: const Icon(Icons.beenhere),
+              title: new TextFormField(
+                key: _id_pwd,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter password';
+                  }
+                },
+                decoration: new InputDecoration(
+                  hintText: "Password",
+                ),
+                obscureText: true,
+              ),
+            ),
+            new ListTile(
+              title: RaisedButton(
+                onPressed: () {
+                  // Validate will return true if the form is valid, or false if
+                  // the form is invalid.
+                  if (_formKey.currentState.validate()) {
+                    // If the form is valid, we want to show a Snackbar
+                    Scaffold.of(context).showSnackBar(
+                        SnackBar(content: Text('Processing Data')));
+                  }
+                },
+                child: Text('Enregistrer'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
